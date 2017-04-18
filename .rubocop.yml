@@ -8,3 +8,9 @@ LineLength:
 
 BlockLength:
   Enabled: false
+
+EndOfLine:
+  Enabled: false
+
+PercentLiteralDelimiters:
+  Enabled: false
