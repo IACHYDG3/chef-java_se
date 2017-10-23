@@ -33,5 +33,4 @@ build_script:
   - bundle exec rake
 
 test_script:
-  - bundle exec kitchen diagnose
-  - bundle exec kitchen verify -l debug
+  - bundle exec kitchen verify
