@@ -57,11 +57,11 @@ describe 'java_se::default' do
       end
 
       it 'add java' do
-        expect(chef_run).to run_ruby_block("adding java to /opt/jdk#{VERSION}")
+        expect(chef_run).to run_ruby_block("adding java to /opt/jdk-#{VERSION}")
       end
 
       it 'symlink java' do
-        expect(chef_run).to create_link('/opt/java').with(to: "/opt/jdk#{VERSION}")
+        expect(chef_run).to create_link('/opt/java').with(to: "/opt/jdk-#{VERSION}")
       end
 
       it 'validates java' do
@@ -96,12 +96,12 @@ describe 'java_se::default' do
       end
 
       it 'add java' do
-        expect(chef_run).to run_ruby_block("adding java to /usr/lib/jvm/jdk#{VERSION}")
+        expect(chef_run).to run_ruby_block("adding java to /usr/lib/jvm/jdk-#{VERSION}")
       end
 
       it 'symlink java' do
         expect(chef_run).to create_link('/usr/lib/jvm/java').with(
-          to: "/usr/lib/jvm/jdk#{VERSION}"
+          to: "/usr/lib/jvm/jdk-#{VERSION}"
         )
       end
 

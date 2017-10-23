@@ -42,7 +42,7 @@ end
 
 package 'tar'
 
-java_dir_name = "jdk#{java_version}"
+java_dir_name = "jdk-#{java_version}"
 java_root = java_home.split('/')[0..-2].join('/')
 java_dir = "#{java_root}/#{java_dir_name}"
 
