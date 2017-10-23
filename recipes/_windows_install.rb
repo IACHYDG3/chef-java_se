@@ -33,6 +33,10 @@ link win_javalink do
   to "#{java_home}\\bin"
 end
 
+link win_javaliblink do
+  to "#{java_home}\\lib"
+end
+
 env 'JAVA_HOME' do
   value java_home
 end

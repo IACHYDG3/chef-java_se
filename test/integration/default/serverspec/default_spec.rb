@@ -2,11 +2,11 @@ require 'spec_helper'
 
 case os[:family]
 when 'windows'
-  describe file("C:\\Program Files (x86)\\Java\\jdk#{VERSION}\\bin\\java.exe") do
+  describe file("C:\\Program Files\\Java\\jdk-#{VERSION}\\bin\\java.exe") do
     it { should be_file }
   end
 
-  describe file("C:\\Program Files (x86)\\Java\\jre#{VERSION}\\bin\\java.exe") do
+  describe file("C:\\Program Files\\Java\\jre-#{VERSION}\\bin\\java.exe") do
     it { should be_file }
   end
 
