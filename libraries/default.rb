@@ -1,17 +1,9 @@
-def java_arch
-  'x64'
-end
-
 def java_version
   (node['java_se']['release']).to_s
 end
 
-def jdk_version
-  (node['java_se']['release']).to_s
-end
-
 def java_version_on_macosx?
-  cmd = Mixlib::ShellOut.new("pkgutil --pkgs='com.oracle.jdk-#{jdk_version}'")
+  cmd = Mixlib::ShellOut.new("pkgutil --pkgs='com.oracle.jdk-#{java_version}'")
   cmd.run_command
   cmd.exitstatus == 0
 end
@@ -24,18 +16,18 @@ def fetch_java_installer
   case node['platform_family']
   when 'mac_os_x'
     checksum = node['java_se']['sha256']['dmg']
-    jdk = "jdk-#{jdk_version}_osx-x64_bin.dmg"
+    jdk = "jdk-#{java_version}_osx-x64_bin.dmg"
   when 'windows'
     checksum = node['java_se']['sha256']['exe']
-    jdk = "jdk-#{jdk_version}_windows-x64_bin.exe"
+    jdk = "jdk-#{java_version}_windows-x64_bin.exe"
   else
     checksum = node['java_se']['sha256']['tar']
-    jdk = "jdk-#{jdk_version}_linux-x64_bin.tar.gz"
+    jdk = "jdk-#{java_version}_linux-x64_bin.tar.gz"
   end
 
   uri = node['java_se']['uri']
   if uri.nil? || uri.empty?
-    download_url = "http://download.oracle.com/otn-pub/java/jdk/#{jdk_version}+#{node['java_se']['build']}/#{jdk}"
+    download_url = "http://download.oracle.com/otn-pub/java/jdk/#{java_version}+#{node['java_se']['build']}/#{jdk}"
   elsif uri.start_with?('file://')
     file_cache_path =
       platform?('windows') ? uri.gsub('file:///', '').tr('/', '\\').tr('|', ':') : uri.gsub('file://', '')
