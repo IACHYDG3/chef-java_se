@@ -15,7 +15,7 @@ version.
 
 The next [scheduled](http://www.oracle.com/technetwork/topics/security/alerts-086861.html) critical patch update:
 
-- 17 October 2017
+- 16 January 2018
 
 How is this different from [Java](https://github.com/agileorbit-cookbooks/java) cookbook?
 
@@ -58,13 +58,7 @@ during initial chef-client run.
 
 `depends 'java_se', '~> 8.0'`
 
-Constrains install to latest available Java SE JDK 8.
-
-#### Constrain java_se cookbook in environment to a specific update
-
-`cookbook 'java_se', '~> 8.77.0'`
-
-Constrains install to Java SE JDK 8u77.
+Constrains install to latest available Java SE JDK 8. 
 
 #### Download JDK from alternative location
 
@@ -76,8 +70,7 @@ override_attributes(
 )
 ```
 
-This will download the JDK that best matches platform criteria e.g., Windows 64-bit with force_i586 flag set to true
-will match https://s3.amazonaws.com/mybucket/java/jdk-8u77-windows-i586.exe. Note that JDK file names must be the
+This will download the JDK that best matches platform criteria. Note that JDK file names must be the
 same as that found on Oracle's download page.
 
 A script to download JDKs from Oracle and upload them to Amazon S3 is
@@ -89,8 +82,6 @@ available [here](https://github.com/dhoer/chef-java_se/wiki/Populate-S3-with-JDK
 assign a file name that best matches platform criteria.  The JDK file names must be the same as that found on
 Oracle's download page. Leave nil to download directly from Oracle. Default `nil`.
 - `node['java_se']['skip']` - Skips installing Java SE. Default `false`.
-- `node['java_se']['force_i586']` - Install i586 Java on x64 machine if true. For Linux and Windows
-only. Default `false`.
 - `node['java_se']['java_home']` - Alternative java_home location. Leave nil to use default location. For Linux
 and Windows only. Default `nil`.
 
@@ -116,22 +107,9 @@ version. Default `%SYSTEMDRIVE%\java\bin`.
 
 #### Bind (Do not override) 
 - `node['java_se']['release']` - The JDK release version.
-- `node['java_se']['update']` - The JDK update version.
 - `node['java_se']['build']` - The build number.
-- `node['java_se']['sha256'][type][arch]` - The checksum to validate the installer with. Where `type` is one of 'dmg', 
-'exe', or 'tar', and `arch` is one of 'x64' or 'i586'
-
-## Versioning
-
-This cookbook does NOT use [SemVer](http://semver.org) for versioning.  
-
-The versioning scheme is RELEASE.UPDATE.MINOR where:
-
-1. RELEASE is the release of Java e.g. 8
-2. UPDATE is the Java update e.g. 77
-3. MINOR is the *cookbook release for an enhancement or bugfix e.g. 0
-
-*All MINOR versions will strive to be backwards-compatible.
+- `node['java_se']['sha256'][type]` - The checksum to validate the installer with. Where `type` is one of 'dmg', 
+'exe', or 'tar'.
 
 ## Getting Help
 
