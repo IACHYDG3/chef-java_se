@@ -33,7 +33,7 @@ link win_javalink do
   to "#{java_home}\\bin"
 end
 
-link "#{win_javalink}\\..\\lib" do
+link "#{javalink_dir}\\lib" do
   to "#{java_home}\\lib"
 end
 
