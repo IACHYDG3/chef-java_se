@@ -20,8 +20,8 @@ describe 'java_se::default' do
 
     it 'installs java' do
       expect(chef_run).to run_execute(
-        "install jdk-#{VERSION}_windows-x64_bin.exe to C:\\Program Files\\Java\\jdk#{VERSION}"\
-                                      " with JRE C:\\Program Files\\Java\\jre#{VERSION}"
+        "install jdk-#{VERSION}_windows-x64_bin.exe to C:\\Program Files\\Java\\jdk-#{VERSION}"\
+                                      " with JRE C:\\Program Files\\Java\\jre-#{VERSION}"
       )
     end
 
@@ -44,7 +44,7 @@ describe 'java_se::default' do
 
     it 'creates link to JDK bin' do
       expect(chef_run).to create_link('C:\java\jdk\bin').with(
-        to: "C:\\Program Files\\Java\\jdk#{VERSION}\\bin"
+        to: "C:\\Program Files\\Java\\jdk-#{VERSION}\\bin"
       )
     end
   end
